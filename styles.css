@@ -262,3 +262,7 @@ em{font-style:normal;color:var(--gold)}
 .support-more .text-back{font-size:12px;letter-spacing:.09em}
 @media(max-width:920px){.footer-luxe{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px}.footer-identity{grid-column:span 2}}
 @media(max-width:640px){.site-footer{padding-top:48px}.footer-luxe{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}.footer-identity{grid-column:span 2}.footer-luxe .footer-heading{font-size:9px}.footer-luxe .footer-group nav a{font-size:12px}.closing-actions{width:min(100%,340px);flex-direction:column}.closing-actions .button{width:100%}.footer-base{margin-top:36px}}
+
+/* App Store buttons use the real listing when Apple's catalog confirms release */
+.closing-actions{align-items:center}
+.closing-actions [data-viarum-store-link]{display:inline-flex}
