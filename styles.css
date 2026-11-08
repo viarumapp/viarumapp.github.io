@@ -242,3 +242,23 @@ em{font-style:normal;color:var(--gold)}
  .support-panel{padding:23px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button{transition:none}}
+
+/* Official social and legal footer */
+.site-footer{padding-top:62px}
+.footer-luxe{display:grid;grid-template-columns:minmax(230px,1.5fr) repeat(3,minmax(140px,1fr));gap:38px;align-items:start}
+.footer-luxe .footer-identity{min-width:0}
+.footer-luxe .footer-identity p{font-size:10px;letter-spacing:.2em;margin-top:20px;color:#b5aa91;line-height:1.6}
+.footer-tagline{display:block;color:#70727a;font-size:10px;letter-spacing:.1em;margin-top:12px}
+.footer-luxe .footer-heading{font-size:10px;font-weight:800;letter-spacing:.19em;color:var(--gold);margin:2px 0 22px}
+.footer-luxe .footer-group nav{display:flex;flex-direction:column;align-items:flex-start;gap:13px}
+.footer-luxe .footer-group nav a{font-size:13px;color:#bdbdc1;letter-spacing:0;line-height:1.6;text-decoration:none;transition:color .2s ease}
+.footer-luxe .footer-group nav a:hover,.footer-luxe .footer-group nav a:focus{color:var(--gold)}
+.footer-base{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;border-top:1px solid #27292d;padding-top:22px;margin-top:56px;color:#8b8c92;font-size:10px;letter-spacing:.1em}
+.footer-base a{color:#a4a5aa;font-size:10px;text-decoration:none;letter-spacing:.13em}
+.closing-actions{display:flex;gap:15px;flex-wrap:wrap;justify-content:center}
+.closing-actions .button{min-width:192px}
+.support-more{border-top:1px solid #343235;padding:21px 0 25px;margin-top:24px}
+.support-more p{font-size:14px;color:#aeb0b8;line-height:1.7}
+.support-more .text-back{font-size:12px;letter-spacing:.09em}
+@media(max-width:920px){.footer-luxe{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px}.footer-identity{grid-column:span 2}}
+@media(max-width:640px){.site-footer{padding-top:48px}.footer-luxe{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}.footer-identity{grid-column:span 2}.footer-luxe .footer-heading{font-size:9px}.footer-luxe .footer-group nav a{font-size:12px}.closing-actions{width:min(100%,340px);flex-direction:column}.closing-actions .button{width:100%}.footer-base{margin-top:36px}}
