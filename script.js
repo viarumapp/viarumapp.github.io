@@ -114,12 +114,29 @@ if (menuButton && mobileMenu) {
   const video = phone.querySelector('video');
   const replay = phone.querySelector('button');
 
+  const frame = phone.querySelector('.hero-tour-frame');
+  let tourTimer;
+
   function showMap() {
+    window.clearTimeout(tourTimer);
     video.hidden = true;
+    frame.hidden = true;
+    frame.classList.remove('is-playing');
+  }
+
+  function showTour() {
+    showMap();
+    if (motion.matches) return;
+    if (!frame.hasAttribute('src')) frame.src = frame.dataset.src;
+    tourTimer = window.setTimeout(() => {
+      frame.hidden = false;
+      frame.classList.add('is-playing');
+    }, 950);
   }
 
   function playIntro() {
     if (motion.matches) return;
+    showMap();
     if (!video.hasAttribute('src')) video.src = video.dataset.src;
     video.currentTime = 0;
     video.muted = true;
@@ -129,7 +146,8 @@ if (menuButton && mobileMenu) {
   video.addEventListener('playing', () => {
     if (!motion.matches) video.hidden = false;
   });
-  video.addEventListener('ended', showMap);
+  video.addEventListener('ended', showTour);
+  frame.addEventListener('animationend', showMap);
   video.addEventListener('error', () => {
     showMap();
     replay.hidden = true;
@@ -147,3 +165,14 @@ if (menuButton && mobileMenu) {
     playIntro();
   }
 })();
+
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const previewObserver = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      entry.target.classList.add('is-in-view');
+      previewObserver.unobserve(entry.target);
+    }
+  }, { threshold: 0.25 });
+  document.querySelectorAll('.visual-roads, .visual-planner').forEach((preview) => previewObserver.observe(preview));
+}
