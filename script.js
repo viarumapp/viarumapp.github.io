@@ -106,3 +106,44 @@ if (menuButton && mobileMenu) {
   }
   activateWhenReleased();
 })();
+
+(function launchPreview() {
+  const phone = document.querySelector('[data-launch-preview]');
+  if (!phone) return;
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const video = phone.querySelector('video');
+  const replay = phone.querySelector('button');
+
+  function showMap() {
+    video.hidden = true;
+  }
+
+  function playIntro() {
+    if (motion.matches) return;
+    if (!video.hasAttribute('src')) video.src = video.dataset.src;
+    video.currentTime = 0;
+    video.muted = true;
+    video.play().catch(showMap);
+  }
+
+  video.addEventListener('playing', () => {
+    if (!motion.matches) video.hidden = false;
+  });
+  video.addEventListener('ended', showMap);
+  video.addEventListener('error', () => {
+    showMap();
+    replay.hidden = true;
+  });
+  replay.addEventListener('click', playIntro);
+  motion.addEventListener('change', () => {
+    if (motion.matches) {
+      video.pause();
+      showMap();
+    }
+  });
+
+  if (!motion.matches) {
+    replay.hidden = false;
+    playIntro();
+  }
+})();
