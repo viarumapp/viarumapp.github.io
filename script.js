@@ -113,57 +113,64 @@ if (menuButton && mobileMenu) {
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const video = phone.querySelector('video');
   const replay = phone.querySelector('button');
+  const screen = phone.querySelector('.hero-map');
+  const tabs = Array.from(document.querySelectorAll('[data-preview]'));
+  const screens = {
+    map: 'VIARUM Map showing automotive places and discovery tools',
+    roads: 'VIARUM Iconic Roads and Route Passports',
+    drive: 'VIARUM Drive screen with the AI Road Trip Planner'
+  };
+  let timers = [];
 
-  const frame = phone.querySelector('.hero-tour-frame');
-  let tourTimer;
+  function selectScreen(name) {
+    screen.src = 'assets/' + name + '.webp';
+    screen.alt = screens[name];
+    tabs.forEach(tab => tab.setAttribute('aria-pressed', String(tab.dataset.preview === name)));
+  }
 
-  function showMap() {
-    window.clearTimeout(tourTimer);
+  function cancelPreview() {
+    timers.forEach(timer => window.clearTimeout(timer));
+    timers = [];
+    video.pause();
     video.hidden = true;
-    frame.hidden = true;
-    frame.classList.remove('is-playing');
   }
 
-  function showTour() {
-    showMap();
+  function showScreens() {
+    video.hidden = true;
     if (motion.matches) return;
-    if (!frame.hasAttribute('src')) frame.src = frame.dataset.src;
-    tourTimer = window.setTimeout(() => {
-      frame.hidden = false;
-      frame.classList.add('is-playing');
-    }, 950);
+    timers = [
+      window.setTimeout(() => selectScreen('roads'), 1500),
+      window.setTimeout(() => selectScreen('drive'), 3400)
+    ];
   }
 
-  function playIntro() {
+  function playPreview() {
+    cancelPreview();
+    selectScreen('map');
     if (motion.matches) return;
-    showMap();
     if (!video.hasAttribute('src')) video.src = video.dataset.src;
     video.currentTime = 0;
-    video.muted = true;
-    video.play().catch(showMap);
+    video.play().catch(error => {
+      if (error.name !== 'AbortError') showScreens();
+    });
   }
 
   video.addEventListener('playing', () => {
     if (!motion.matches) video.hidden = false;
   });
-  video.addEventListener('ended', showTour);
-  frame.addEventListener('animationend', showMap);
-  video.addEventListener('error', () => {
-    showMap();
-    replay.hidden = true;
-  });
-  replay.addEventListener('click', playIntro);
+  video.addEventListener('ended', showScreens);
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    cancelPreview();
+    selectScreen(tab.dataset.preview);
+  }));
+  replay.addEventListener('click', playPreview);
   motion.addEventListener('change', () => {
-    if (motion.matches) {
-      video.pause();
-      showMap();
-    }
+    cancelPreview();
+    replay.hidden = motion.matches;
   });
 
-  if (!motion.matches) {
-    replay.hidden = false;
-    playIntro();
-  }
+  replay.hidden = motion.matches;
+  if (!motion.matches) playPreview();
 })();
 
 if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
