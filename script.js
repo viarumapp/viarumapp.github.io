@@ -23,7 +23,7 @@ if (menuButton && mobileMenu) {
  * On each page visit, check Apple's public App Store catalog for VIARUM's
  * exact iOS bundle identifier. Once published in the visitor's storefront,
  * every "Get the App" button is automatically linked to that real listing.
- * Before launch, buttons lead to the "Coming Soon" section on this page.
+ * Before launch, buttons lead to the dedicated Coming Soon page.
  *
  * Once VIARUM's numeric Apple ID is available, this can be simplified to
  * a permanent direct App Store URL, without depending on lookup requests.
