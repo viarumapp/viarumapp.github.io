@@ -266,3 +266,8 @@ em{font-style:normal;color:var(--gold)}
 /* App Store buttons use the real listing when Apple's catalog confirms release */
 .closing-actions{align-items:center}
 .closing-actions [data-viarum-store-link]{display:inline-flex}
+
+.hero-launch{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:3}
+.hero-replay{position:absolute;bottom:13%;left:50%;transform:translateX(-50%);z-index:6;min-height:44px;padding:0 14px;border:1px solid #ac915e;border-radius:999px;background:#111318;color:#f1dbb1;font:inherit;font-size:12px;font-weight:600;white-space:nowrap;cursor:pointer}
+.hero-replay:focus-visible{outline:2px solid #f1dbb1;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.hero-launch,.hero-replay{display:none}}
