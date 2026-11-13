@@ -8,7 +8,7 @@
   <meta name="robots" content="index,follow">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="preload" as="image" href="assets/coastal-drive.jpg">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=site-motion-1">
   <meta property="og:type" content="website">
   <meta property="og:title" content="VIARUM — For the Roads. For the Drivers.">
   <meta property="og:description" content="The world is your road. A premium driving experience for iconic roads, rallies, road trips and automotive community.">
@@ -16,7 +16,7 @@
   <meta property="og:url" content="https://viarumapp.github.io/">
   <meta name="twitter:card" content="summary_large_image">
   <title>VIARUM | For the Roads. For the Drivers.</title>
-  <script src="script.js" defer></script>
+  <script src="script.js?v=site-motion-1" defer></script>
 </head>
 <body>
   <a href="#main" class="skip">Skip to main content</a>
@@ -44,6 +44,12 @@
       <a href="#community">Community</a>
       <a href="#download" data-viarum-store-link>Get the App</a>
     </nav>
+    <nav class="site-tabs" aria-label="Site pages">
+      <a href="/" aria-current="page">Home</a>
+      <a href="/viarum/privacy.html">Privacy</a>
+      <a href="/viarum/terms.html">Terms</a>
+      <a href="/viarum/support.html">Support</a>
+    </nav>
   </header>
 
   <main id="main">
@@ -63,10 +69,11 @@
         <div class="hero-stage" aria-label="VIARUM automotive lifestyle and real app screenshot">
           <div class="road-photo-wrap"><img src="assets/coastal-drive.jpg" alt="Golden light trails winding along a dramatic coastal road" fetchpriority="high"></div>
           <div class="hero-halo" aria-hidden="true"></div>
-          <div class="hero-phone phone" data-launch-preview aria-label="VIARUM map view">
+          <div class="hero-phone phone" data-launch-preview aria-label="VIARUM app preview">
             <div class="phone-camera" aria-hidden="true"></div>
-            <img src="assets/map.webp" alt="Actual VIARUM app map showing automotive places and discovery tools">
+            <img src="assets/map.webp" class="hero-map" alt="Actual VIARUM app map showing automotive places and discovery tools">
             <video class="hero-launch" data-src="assets/viarum-launch.mp4" preload="none" muted playsinline hidden aria-hidden="true"></video>
+            <img class="hero-tour-frame" data-src="assets/roads.webp" alt="" hidden>
             <button class="hero-replay" type="button" hidden>Replay intro</button>
           </div>
           <div class="hero-stamp"><img src="assets/viarum-mark.png" width="70" height="62" alt=""><span>THE DRIVE<br>STARTS HERE.</span></div>
@@ -90,7 +97,7 @@
     <section class="feature-section feature-roads" id="roads">
       <div class="container feature-grid">
         <div class="feature-visual visual-roads">
-          <span class="visual-texture">100</span>
+          <span class="visual-texture" aria-hidden="true">100</span>
           <div class="feature-phone phone phone-roads-one"><div class="phone-camera"></div><img src="assets/roads.webp" alt="VIARUM Iconic Roads screen featuring curated drives and Route Passports" loading="lazy"></div>
           <div class="feature-phone phone phone-roads-two"><div class="phone-camera"></div><img src="assets/roads100.webp" alt="The VIARUM 100 list of famous driving roads" loading="lazy"></div>
           <div class="visual-label">THE VIARUM 100 <span>—</span> DRIVE THE LEGENDS</div>
