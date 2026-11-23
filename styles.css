@@ -378,3 +378,11 @@ main section[id]{scroll-margin-top:135px}
  .featured-drive .road-atlas-jump{margin-left:0;display:flex;width:max-content;max-width:100%}
 }
 @media(prefers-reduced-motion:reduce){.road-atlas-card[open] .road-atlas-panel{animation:none}}
+
+/* Leave shared roads below the sticky header and keep fragment links distinct. */
+.road-atlas-card[id]{scroll-margin-top:135px}
+.road-atlas-card:target{border-color:var(--gold-light)}
+.road-atlas-permalink{display:inline-flex;align-items:center;gap:.35em;margin-left:14px;min-height:44px;color:var(--gold-light);font-size:.82rem;text-decoration:underline;text-underline-offset:.18em}
+.road-atlas-permalink:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
+.showcase-caption .showcase-preview-note{margin-top:.65rem;color:var(--gold-light);font-size:.78rem;line-height:1.4}
+@media(max-width:680px){.road-atlas-card[id]{scroll-margin-top:105px}}
