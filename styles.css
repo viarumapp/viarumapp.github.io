@@ -325,3 +325,56 @@ main section[id]{scroll-margin-top:135px}
 .featured-drive-route figcaption{color:#ede8de}
 .featured-drive-route svg{display:block;width:100%;height:auto}
 @media(max-width:640px){.featured-drive-body{grid-template-columns:minmax(0,1fr)}}
+
+/* Interactive VIARUM 100 preview. Native details work without JavaScript. */
+.road-atlas{padding:clamp(52px,8vw,108px) 0;background:radial-gradient(ellipse at 92% 5%,#241c10 0%,transparent 38%),#0c0d10;border-block:1px solid #ffffff10;scroll-margin-top:118px}
+.road-atlas-heading{margin:0 0 clamp(24px,4vw,44px);max-width:720px}
+.road-atlas-heading h2{font-size:clamp(32px,5.4vw,70px);line-height:1.02;letter-spacing:-.04em;margin:12px 0 13px}
+.road-atlas-heading>p:last-child,.road-atlas-disclosure{color:#b8bbc1;font-size:14px;line-height:1.65}
+.road-atlas-heading>p:last-child{max-width:550px;margin:0}
+.road-atlas-list{display:grid;gap:10px}
+.road-atlas-card{min-width:0;border:1px solid #323237;border-radius:15px;background:#141518}
+.road-atlas-card[open]{border-color:#786337;background:#191815}
+.road-atlas-card summary{display:grid;grid-template-columns:30px minmax(0,1fr) minmax(0,0.75fr) 20px;align-items:center;gap:12px;min-height:64px;list-style:none;padding:12px clamp(13px,2.8vw,28px);border-radius:14px;cursor:pointer}
+.road-atlas-card summary::-webkit-details-marker{display:none}
+.road-atlas-card summary:hover{background:#ffffff08}
+.road-atlas-card summary:focus-visible,.road-atlas-source:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
+.road-atlas-index{color:var(--gold-light);font-size:11px;font-weight:800;letter-spacing:.12em;font-variant-numeric:tabular-nums}
+.road-atlas-title{min-width:0;display:flex;flex-direction:column;gap:3px}
+.road-atlas-region{color:#c2ae84;font-size:10px;letter-spacing:.1em;font-weight:790;text-transform:uppercase}
+.road-atlas-name{font-size:clamp(15px,2.2vw,22px);font-weight:790;line-height:1.2}
+.road-atlas-location{color:#c4c3c0;font-size:13px;line-height:1.4}
+.road-atlas-toggle{display:grid;place-items:center;width:20px;height:20px;color:var(--gold-light)}
+.road-atlas-toggle::before{content:"+";font-size:21px;line-height:1}
+.road-atlas-card[open] .road-atlas-toggle::before{content:"−"}
+.road-atlas-panel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:clamp(14px,3.5vw,42px);align-items:center;padding:clamp(14px,3vw,26px);border-top:1px solid #ffffff14}
+.road-atlas-card[open] .road-atlas-panel{animation:road-atlas-appear .23s ease-out both}
+@keyframes road-atlas-appear{from{opacity:.3;transform:translateY(-3px)}to{opacity:1;transform:none}}
+.road-atlas-copy{min-width:0}
+.road-atlas-copy>p{color:#e2e0da;font-size:15px;line-height:1.65;margin:0 0 14px;max-width:530px}
+.road-atlas-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 12px;max-width:520px}
+.road-atlas-facts>div{border-left:1px solid #a58e59;padding-left:9px}
+.road-atlas-facts dt{color:#c2ae84;font-size:10px;font-weight:760;text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px}
+.road-atlas-facts dd{color:#f5f1e7;font-size:13px;line-height:1.35;margin:0}
+.road-atlas-source{min-height:44px;display:inline-flex;align-items:center;gap:6px;color:var(--gold-light);text-decoration:underline;text-underline-offset:4px;font-size:13px;font-weight:700}
+.road-atlas-art{margin:0;min-width:0;overflow:hidden;border:1px solid #d2b16c38;border-radius:12px;background:radial-gradient(ellipse at 65% 36%,#302312,#111317 76%)}
+.road-atlas-art svg{display:block;width:100%;height:auto;max-height:180px}
+.road-atlas-art figcaption{display:block;padding:7px 10px;border-top:1px solid #d2b16c26;color:#c2b28c;font-size:10px;text-transform:uppercase;letter-spacing:.05em}
+.road-atlas-contour{stroke:#b99758;stroke-width:1;opacity:.22}
+.road-atlas-trace{stroke:#efc76d;stroke-width:2.5;stroke-linecap:round}
+.road-atlas-pin{fill:#f3d08b;stroke:#21190c;stroke-width:1.25}
+.road-atlas-disclosure{font-size:12px;margin:16px 0 0}
+.featured-drive .road-atlas-jump{min-height:44px;display:inline-flex;align-items:center;gap:6px;margin-left:12px;color:var(--gold-light);text-underline-offset:4px;text-decoration:underline;font-size:13px;font-weight:650}
+.featured-drive .road-atlas-jump:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
+@media(max-width:700px){
+ .road-atlas{scroll-margin-top:90px}
+ .road-atlas-card summary{grid-template-columns:22px minmax(0,1fr) 20px;gap:5px 9px;padding:12px}
+ .road-atlas-index{grid-column:1;grid-row:1 / span 2}
+ .road-atlas-title{grid-column:2;grid-row:1}
+ .road-atlas-location{grid-column:2;grid-row:2;font-size:11px}
+ .road-atlas-toggle{grid-column:3;grid-row:1 / span 2}
+ .road-atlas-panel{grid-template-columns:minmax(0,1fr)}
+ .road-atlas-art svg{max-height:132px}
+ .featured-drive .road-atlas-jump{margin-left:0;display:flex;width:max-content;max-width:100%}
+}
+@media(prefers-reduced-motion:reduce){.road-atlas-card[open] .road-atlas-panel{animation:none}}
