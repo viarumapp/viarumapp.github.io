@@ -183,3 +183,18 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   }, { threshold: 0.25 });
   document.querySelectorAll('.visual-roads, .visual-planner').forEach((preview) => previewObserver.observe(preview));
 }
+
+// Native fragment links still scroll to the road and leave its summary usable
+// without JavaScript. With JavaScript, also expand the matching road.
+(() => {
+  function openLinkedRoad() {
+    const id = window.location.hash.slice(1);
+    const road = document.getElementById(id);
+    if (!road || !road.matches('#viarum-100 details.road-atlas-card')) return;
+    road.open = true;
+    road.scrollIntoView({ block: 'start' });
+  }
+
+  openLinkedRoad();
+  window.addEventListener('hashchange', openLinkedRoad);
+})();
