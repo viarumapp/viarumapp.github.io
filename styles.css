@@ -386,3 +386,18 @@ main section[id]{scroll-margin-top:135px}
 .road-atlas-permalink:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
 .showcase-caption .showcase-preview-note{margin-top:.65rem;color:var(--gold-light);font-size:.78rem;line-height:1.4}
 @media(max-width:680px){.road-atlas-card[id]{scroll-margin-top:105px}}
+
+/* Guest road sharing enhances the permanent anchor without replacing it. */
+.road-atlas-share:not([hidden]){display:inline-flex;min-height:44px;align-items:center;margin:4px 0 4px 12px;padding:0 13px;border:1px solid var(--gold-light);border-radius:999px;background:transparent;color:var(--gold-light);font:inherit;font-size:.82rem;cursor:pointer}
+.road-atlas-share:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
+.road-atlas-share-status:not(:empty){display:block;line-height:1.45;margin-top:6px;font-size:.82rem;color:var(--gold-light)}
+@media(max-width:680px){.road-atlas-share:not([hidden]){margin-left:0}}
+
+.drivers-log-preview{scroll-margin-top:135px;margin:2rem auto 0;padding:clamp(1.1rem,4vw,2rem);max-width:42rem;border:1px solid var(--gold-line,#76613d);border-radius:1rem;background:var(--panel,#141416)}
+.drivers-log-preview:target{border-color:var(--gold-light)}
+.drivers-log-preview h3{font-size:clamp(1.6rem,5vw,2.4rem);margin:.35rem 0 .45rem}
+.drivers-log-preview p{max-width:55ch;margin:.45rem 0}
+.drivers-log-preview .drivers-log-availability{font-size:.89rem}
+.drivers-log-preview a{display:inline-flex;align-items:center;gap:.4em;min-height:44px;color:var(--gold-light);text-underline-offset:.2em}
+.drivers-log-preview a:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}
+@media(max-width:680px){.drivers-log-preview{scroll-margin-top:105px}}

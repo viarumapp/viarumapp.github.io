@@ -195,6 +195,48 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
     road.scrollIntoView({ block: 'start' });
   }
 
+  const canCopy = typeof navigator.clipboard?.writeText === 'function';
+  const canShare = typeof navigator.share === 'function';
+
+  for (const road of document.querySelectorAll('#viarum-100 details.road-atlas-card')) {
+    const link = road.querySelector('.road-atlas-permalink');
+    const share = road.querySelector('.road-atlas-share');
+    const copy = road.querySelector('.road-atlas-copy');
+    const status = road.querySelector('.road-atlas-share-status');
+    const name = road.querySelector('.road-atlas-name');
+    if (!link || !share || !copy || !status || !name) continue;
+
+    const fragment = link.getAttribute('href');
+    if (fragment !== '#' + road.id || !/^#road-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(fragment)) continue;
+    const url = new URL(fragment, 'https://viarumapp.github.io/').href;
+    share.hidden = !canShare;
+    copy.hidden = !canCopy;
+    let pending = false;
+    const act = work => async () => {
+      if (pending) return;
+      pending = true;
+      status.textContent = '';
+      try { await work(); }
+      finally { pending = false; }
+    };
+    if (canShare) share.addEventListener('click', act(async () => {
+      try { await navigator.share({ title: name.textContent.trim() + ' | VIARUM', url }); }
+      catch (error) {
+        if (error?.name === 'AbortError') return;
+        status.textContent = canCopy ? 'Could not open sharing. Use Copy road link instead.'
+          : 'Could not open sharing. Use the road link to copy its address.';
+      }
+    }));
+    if (canCopy) copy.addEventListener('click', act(async () => {
+      try {
+        await navigator.clipboard.writeText(url);
+        status.textContent = 'Road link copied.';
+      } catch {
+        status.textContent = 'Could not copy this road. Use the road link to copy its address.';
+      }
+    }));
+  }
+
   openLinkedRoad();
   window.addEventListener('hashchange', openLinkedRoad);
 })();
